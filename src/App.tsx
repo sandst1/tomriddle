@@ -9,6 +9,7 @@ function App() {
   const canvasRef = useRef<HTMLCanvasElement | null>(null);
   const contextRef = useRef<CanvasRenderingContext2D | null>(null);
   const [isDrawing, setIsDrawing] = useState(false);
+  const [showTomRiddle, setShowTomRiddle] = useState(false);
 
   const [messages, setMessages] = useState<Array<ChatCompletionMessageParam>>(
     []
@@ -51,6 +52,7 @@ function App() {
         ]);
 
         clearTheRiddle();
+        setShowTomRiddle(false);
 
         new Vara(
           "#tomriddle",
@@ -61,10 +63,15 @@ function App() {
             },
           ],
           {
-            fontSize: 46,
+            fontSize: 36,
             strokeWidth: 1,
           }
         );
+
+        // Trigger the fade-in animation after a short delay
+        setTimeout(() => {
+          setShowTomRiddle(true);
+        }, 100);
       });
 
       clearCanvas();
@@ -160,7 +167,7 @@ function App() {
           onMouseLeave={stopDrawing}
         />
       </div>
-      <div id="tomriddle"></div>
+      <div id="tomriddle" className={showTomRiddle ? "fade-in" : ""}></div>
     </div>
   );
 }
