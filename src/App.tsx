@@ -15,7 +15,7 @@ function App() {
   );
 
   const clearTheRiddle = () => {
-    const container = document.getElementById("vara-container");
+    const container = document.getElementById("tomriddle");
     if (container) {
       while (container.firstChild) {
         container.removeChild(container.firstChild);
